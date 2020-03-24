@@ -70,3 +70,4 @@ tasks.withType<ShadowJar> {
     source
     isZip64 = true
 }
+defaultTasks.add("shadowJar")
