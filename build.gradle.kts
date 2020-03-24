@@ -56,6 +56,13 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+tasks.withType<Javadoc> {
+    options {
+        encoding = "UTF-8"
+        version = true
+    }
+}
+
 tasks.withType<ShadowJar> {
     archiveBaseName.set("com.renyun.serivce")
     archiveVersion.set("1.0.0")
@@ -71,3 +78,5 @@ tasks.withType<ShadowJar> {
     isZip64 = true
 }
 defaultTasks.add("shadowJar")
+defaultTasks.add("javadoc")
+
