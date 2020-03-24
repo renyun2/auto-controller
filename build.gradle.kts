@@ -81,10 +81,7 @@ tasks.withType<ShadowJar> {
 defaultTasks.add("shadowJar")
 defaultTasks.add("javadoc")
 
-tasks.create("install"){
-    tasks.getByName("shadowJar")
-}
-
-artifacts {
-    archives(tasks.getByName("shadowJar"))
+tasks.create("install") {
+    dependsOn("shadowJar")
+//    println(tasks.getByName("shadowJar"))
 }
