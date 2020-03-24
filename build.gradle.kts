@@ -58,7 +58,6 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<ShadowJar> {
     archiveBaseName.set("com.renyun.serivce")
-    archiveClassifier.set("jdk13")
     archiveVersion.set("1.0.0")
     minimize()
     dependencies {
