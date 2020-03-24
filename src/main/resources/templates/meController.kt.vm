@@ -1,0 +1,24 @@
+package ${package.Controller}
+
+
+import ${package.Entity}.${entity}
+import ${package.Service}.${table.serviceName}
+import org.springframework.web.bind.annotation.RequestMapping
+import com.renyun.service.controller.BaseController
+import org.springframework.beans.factory.annotation.Autowired
+
+import org.springframework.web.bind.annotation.RestController
+
+/**
+ * <p>
+ *  前端控制器
+ * </p>
+ *
+ * @author renyun
+ */
+@RestController
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+class ${entity}Controller : BaseController<I${entity}Service,${entity}>() {
+    @Autowired
+    override lateinit var service: I${entity}Service
+}
