@@ -5,7 +5,6 @@ plugins {
     id("org.springframework.boot") version "2.3.0.M3"
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
     id("com.github.johnrengelman.shadow") version "5.2.0"
-    war
     kotlin("jvm") version "1.3.70"
     kotlin("plugin.spring") version "1.3.70"
     `maven-publish`
@@ -42,7 +41,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+//    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
 
 
