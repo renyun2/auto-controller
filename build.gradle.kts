@@ -65,8 +65,10 @@ tasks.withType<Javadoc> {
 
 
 tasks.withType<ShadowJar> {
-    archiveBaseName.set("com.renyun.serivce")
+    archiveBaseName.set("com.github.serivce")
     archiveVersion.set("1.0.0")
+    archiveAppendix.set("")
+    archiveClassifier.set("")
     minimize()
     dependencies {
         include(dependency("org.springframework.boot:spring-boot-starter-web"))
