@@ -7,7 +7,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "5.2.0"
     kotlin("jvm") version "1.3.70"
     kotlin("plugin.spring") version "1.3.70"
-    `maven-publish`
+    maven
 }
 
 group = "com.github.renyun2"
