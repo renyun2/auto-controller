@@ -10,8 +10,8 @@ plugins {
     kotlin("plugin.spring") version "1.3.70"
 }
 
-group = "com.github.renyun"
-version = "0.0.1"
+group = "com.github.renyun2"
+version = "1.0.0"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -65,7 +65,7 @@ tasks.withType<Javadoc> {
 
 
 tasks.withType<ShadowJar> {
-    archiveBaseName.set("com.github.serivce")
+    archiveBaseName.set("com.github.renyun2")
     archiveVersion.set("1.0.0")
     archiveAppendix.set("")
     archiveClassifier.set("")
