@@ -10,7 +10,7 @@ plugins {
     kotlin("plugin.spring") version "1.3.70"
 }
 
-group = "com.renyun"
+group = "com.github.renyun"
 version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
@@ -63,6 +63,7 @@ tasks.withType<Javadoc> {
     }
 }
 
+
 tasks.withType<ShadowJar> {
     archiveBaseName.set("com.renyun.serivce")
     archiveVersion.set("1.0.0")
@@ -80,3 +81,10 @@ tasks.withType<ShadowJar> {
 defaultTasks.add("shadowJar")
 defaultTasks.add("javadoc")
 
+tasks.create("install"){
+    tasks.getByName("shadowJar")
+}
+
+artifacts {
+    archives(tasks.getByName("shadowJar"))
+}
