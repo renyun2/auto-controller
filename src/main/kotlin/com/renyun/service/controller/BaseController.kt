@@ -46,8 +46,8 @@ open class BaseController<T : IService<K>, K : BaseEntity>(var update: Boolean =
         getOrderToMap(orders)?.forEach {
             page.addOrder(OrderItem().setColumn(it.key).setAsc(it.value))
         }
-        var wrapper = getWhere(where)
-        wrapper = getSearch(wrapper, search, searchKey)
+        val searchWrap = getSearch(QueryWrapper(), search, searchKey)
+        val wrapper = getWhere(searchWrap, where)
         return service.page(page, wrapper ?: Wrappers.emptyWrapper())
     }
 
@@ -59,8 +59,16 @@ open class BaseController<T : IService<K>, K : BaseEntity>(var update: Boolean =
             return wrapper
         val wrappers = wrapper ?: QueryWrapper()
         val split = searchKey.split(",")
-        split.forEach {
-            wrappers.like(it, "%$search%")
+        if (split.isNotEmpty()) {
+            wrappers.and {
+                split.forEachIndexed { index, s ->
+                    if (index < split.size - 1) {
+                        it.like(s, "%$search%").or()
+                    } else {
+                        it.like(s, "%$search%")
+                    }
+                }
+            }
         }
         return wrappers
     }
@@ -86,9 +94,9 @@ open class BaseController<T : IService<K>, K : BaseEntity>(var update: Boolean =
     /**
      * 获取where条件
      */
-    open fun getWhere(where: String?): QueryWrapper<K>? {
+    open fun getWhere(wrapper: QueryWrapper<K>?, where: String?): QueryWrapper<K>? {
         val wheres = Gson().fromJson<MutableList<WrappersBean>>(where, object : TypeToken<MutableList<WrappersBean>>() {}.type)
-        val lambdaQuery = QueryWrapper<K>()
+        val lambdaQuery = wrapper ?: QueryWrapper<K>()
         /**
          * 判别条件
          * 参数命名说明:
