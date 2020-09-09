@@ -220,7 +220,6 @@ open class BaseController<T : IService<K>, K : BaseEntity>(var update: Boolean =
             throw InfoException("越权操作")
         val updateWrapper = UpdateWrapper<K>(null)
         val eq = updateWrapper.set(key, value).eq("id", id)
-        eq.set(key, value)
         service.update(eq)
     }
 
